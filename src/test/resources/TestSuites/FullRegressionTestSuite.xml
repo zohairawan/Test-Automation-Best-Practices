@@ -1,14 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="Full Regression Suite" verbose="1">
-    <test name="Positive Login Tests">
+    <test name="Login Tests">
         <classes>
             <class name="com.practiceautomation.tests.login.PositiveLoginTests"/>
-        </classes>
-    </test>
-
-    <test name="Negative Login Tests">
-        <classes>
             <class name="com.practiceautomation.tests.login.NegativeLoginTests"/>
         </classes>
     </test>
