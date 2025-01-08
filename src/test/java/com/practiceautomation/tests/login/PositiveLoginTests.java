@@ -5,9 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class PositiveLoginTests {
 
+    @Test
     public void testLoginFunctionality() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -33,5 +35,7 @@ public class PositiveLoginTests {
 
         WebElement logoutButton = driver.findElement(By.linkText("Log out"));
         Assert.assertTrue(logoutButton.isDisplayed());
+
+        driver.quit();
     }
 }
