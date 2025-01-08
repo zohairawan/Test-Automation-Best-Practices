@@ -22,3 +22,6 @@ Test case 3: Negative password test
     Push Submit button
     Verify error message is displayed
     Verify error message text is Your password is invalid!
+
+Log:
+    Version 1 Complete
