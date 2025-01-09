@@ -71,36 +71,4 @@ public class LoginTests {
 
         driver.quit();
     }
-
-//    @Test(groups={"negative", "regression"})
-//    public void incorrectPasswordLoginTest() {
-//        WebDriver driver = new ChromeDriver();
-//        driver.manage().window().maximize();
-//        String url = "https://practicetestautomation.com/practice-test-login/";
-//        driver.get(url);
-//
-//        WebElement usernameInputField = driver.findElement(By.id("username"));
-//        usernameInputField.sendKeys("student");
-//
-//        WebElement passwordInputField = driver.findElement(By.id("password"));
-//        passwordInputField.sendKeys("incorrectPassword");
-//
-//        WebElement submitButton = driver.findElement(By.id("submit"));
-//        submitButton.click();
-//
-//        // Allows error message to load so Selenium doesn't skip it
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        WebElement invalidPasswordError = driver.findElement(By.id("error"));
-//        Assert.assertTrue(invalidPasswordError.isDisplayed());
-//        String actualPasswordErrorMessage = invalidPasswordError.getText();
-//        String expectedPasswordErrorMessage = "Your password is invalid!";
-//        Assert.assertEquals(actualPasswordErrorMessage, expectedPasswordErrorMessage);
-//
-//        driver.quit();
-//    }
 }
