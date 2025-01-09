@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -13,8 +14,8 @@ public class LoginTests {
 
     @BeforeMethod(alwaysRun = true)
     @Parameters("browser")
-    public void setUp() {
-        driver = new ChromeDriver();
+    public void setUp(String browser) {
+        driver = browser.equalsIgnoreCase("firefox") ? new FirefoxDriver() : new ChromeDriver();
         driver.manage().window().maximize();
         String url = "https://practicetestautomation.com/practice-test-login/";
         driver.get(url);
