@@ -2,11 +2,6 @@
 
 <suite name="Full Regression Suite" verbose="1">
     <test name="Positive Login Tests">
-        <groups>
-            <run>
-                <include name="regression"/>
-            </run>
-        </groups>
         <classes>
             <class name="com.practiceautomation.tests.login.LoginTests">
                 <methods>
