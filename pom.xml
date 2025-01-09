@@ -12,6 +12,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <suiteXmlFile>FullRegressionTestSuite.xml</suiteXmlFile>
     </properties>
 
     <build>
@@ -22,7 +23,7 @@
                 <version>3.5.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/TestSuites/FullRegressionTestSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/TestSuites/${suiteXmlFile}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
