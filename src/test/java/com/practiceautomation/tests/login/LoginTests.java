@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 
 public class LoginTests {
 
-    @Test
-    public void testLoginFunctionality() {
+    @Test(groups = {"positive", "smoke", "regression"})
+    public void successfulLoginTest() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         String url = "https://practicetestautomation.com/practice-test-login/";
@@ -39,8 +39,8 @@ public class LoginTests {
         driver.quit();
     }
 
-    @Test
-    public void incorrectUsernameTest() {
+    @Test(groups={"negative", "regression"})
+    public void incorrectUsernameLoginTest() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         String url = "https://practicetestautomation.com/practice-test-login/";
@@ -71,8 +71,8 @@ public class LoginTests {
         driver.quit();
     }
 
-    @Test
-    public void incorrectPasswordTest() {
+    @Test(groups={"negative", "regression"})
+    public void incorrectPasswordLoginTest() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         String url = "https://practicetestautomation.com/practice-test-login/";
