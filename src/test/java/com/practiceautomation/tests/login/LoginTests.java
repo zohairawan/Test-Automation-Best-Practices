@@ -5,12 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginTests {
 
     @Test(groups = {"positive", "smoke", "regression"})
-    public void successfulLoginTest() {
+    public void positiveLoginTest() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         String url = "https://practicetestautomation.com/practice-test-login/";
@@ -39,18 +40,19 @@ public class LoginTests {
         driver.quit();
     }
 
+    @Parameters({"username", "password", "expectedErrorMessage"})
     @Test(groups={"negative", "regression"})
-    public void incorrectUsernameLoginTest() {
+    public void negativeLoginTest(String username, String password, String expectedErrorMessage) {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         String url = "https://practicetestautomation.com/practice-test-login/";
         driver.get(url);
 
         WebElement usernameInputField = driver.findElement(By.id("username"));
-        usernameInputField.sendKeys("incorrectUsername");
+        usernameInputField.sendKeys(username);
 
         WebElement passwordInputField = driver.findElement(By.id("password"));
-        passwordInputField.sendKeys("Password123");
+        passwordInputField.sendKeys(password);
 
         WebElement submitButton = driver.findElement(By.id("submit"));
         submitButton.click();
@@ -65,41 +67,40 @@ public class LoginTests {
         WebElement invalidUsernameError = driver.findElement(By.id("error"));
         Assert.assertTrue(invalidUsernameError.isDisplayed());
         String actualUsernameErrorMessage = invalidUsernameError.getText();
-        String expectedUsernameErrorMessage = "Your username is invalid!";
-        Assert.assertEquals(actualUsernameErrorMessage, expectedUsernameErrorMessage);
+        Assert.assertEquals(actualUsernameErrorMessage, expectedErrorMessage);
 
         driver.quit();
     }
 
-    @Test(groups={"negative", "regression"})
-    public void incorrectPasswordLoginTest() {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        String url = "https://practicetestautomation.com/practice-test-login/";
-        driver.get(url);
-
-        WebElement usernameInputField = driver.findElement(By.id("username"));
-        usernameInputField.sendKeys("student");
-
-        WebElement passwordInputField = driver.findElement(By.id("password"));
-        passwordInputField.sendKeys("incorrectPassword");
-
-        WebElement submitButton = driver.findElement(By.id("submit"));
-        submitButton.click();
-
-        // Allows error message to load so Selenium doesn't skip it
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        WebElement invalidPasswordError = driver.findElement(By.id("error"));
-        Assert.assertTrue(invalidPasswordError.isDisplayed());
-        String actualPasswordErrorMessage = invalidPasswordError.getText();
-        String expectedPasswordErrorMessage = "Your password is invalid!";
-        Assert.assertEquals(actualPasswordErrorMessage, expectedPasswordErrorMessage);
-
-        driver.quit();
-    }
+//    @Test(groups={"negative", "regression"})
+//    public void incorrectPasswordLoginTest() {
+//        WebDriver driver = new ChromeDriver();
+//        driver.manage().window().maximize();
+//        String url = "https://practicetestautomation.com/practice-test-login/";
+//        driver.get(url);
+//
+//        WebElement usernameInputField = driver.findElement(By.id("username"));
+//        usernameInputField.sendKeys("student");
+//
+//        WebElement passwordInputField = driver.findElement(By.id("password"));
+//        passwordInputField.sendKeys("incorrectPassword");
+//
+//        WebElement submitButton = driver.findElement(By.id("submit"));
+//        submitButton.click();
+//
+//        // Allows error message to load so Selenium doesn't skip it
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        WebElement invalidPasswordError = driver.findElement(By.id("error"));
+//        Assert.assertTrue(invalidPasswordError.isDisplayed());
+//        String actualPasswordErrorMessage = invalidPasswordError.getText();
+//        String expectedPasswordErrorMessage = "Your password is invalid!";
+//        Assert.assertEquals(actualPasswordErrorMessage, expectedPasswordErrorMessage);
+//
+//        driver.quit();
+//    }
 }
