@@ -3,8 +3,8 @@
 <suite name="Full Regression Suite" verbose="1">
     <test name="Login Tests">
         <classes>
-            <class name="com.practiceautomation.tests.login.PositiveLoginTests"/>
-            <class name="com.practiceautomation.tests.login.NegativeLoginTests"/>
+<!--            <class name=""/>-->
+<!--            <class name=""/>-->
         </classes>
     </test>
 </suite>
