@@ -1,22 +1,32 @@
 package com.practiceautomation.tests.login;
 
+import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class LoginTests {
+    private WebDriver driver;
 
-    @Test(groups = {"positive", "smoke", "regression"})
-    public void positiveLoginTest() {
-        WebDriver driver = new ChromeDriver();
+    @BeforeMethod(alwaysRun = true)
+    @Parameters("browser")
+    public void setUp() {
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         String url = "https://practicetestautomation.com/practice-test-login/";
         driver.get(url);
+    }
 
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        driver.quit();
+    }
+
+    @Test(groups = {"positive", "smoke", "regression"})
+    public void positiveLoginTest() {
         WebElement usernameInputField = driver.findElement(By.id("username"));
         usernameInputField.sendKeys("student");
 
@@ -36,18 +46,11 @@ public class LoginTests {
 
         WebElement logoutButton = driver.findElement(By.linkText("Log out"));
         Assert.assertTrue(logoutButton.isDisplayed());
-
-        driver.quit();
     }
 
     @Parameters({"username", "password", "expectedErrorMessage"})
     @Test(groups={"negative", "regression"})
     public void negativeLoginTest(String username, String password, String expectedErrorMessage) {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        String url = "https://practicetestautomation.com/practice-test-login/";
-        driver.get(url);
-
         WebElement usernameInputField = driver.findElement(By.id("username"));
         usernameInputField.sendKeys(username);
 
@@ -68,7 +71,5 @@ public class LoginTests {
         Assert.assertTrue(invalidUsernameError.isDisplayed());
         String actualUsernameErrorMessage = invalidUsernameError.getText();
         Assert.assertEquals(actualUsernameErrorMessage, expectedErrorMessage);
-
-        driver.quit();
     }
 }
